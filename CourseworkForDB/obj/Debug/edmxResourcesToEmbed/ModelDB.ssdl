@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище CourseWorkModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "D:\COLLEGE\C#\COURSEWORKFORDB\COURSEWORKFORDB\COURSEWORK.MDF.dbo.Books" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="Books">
+    <Key>
+      <PropertyRef Name="BookChiper" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Printing" />
+      <PropertyRef Name="PrintDate" />
+      <PropertyRef Name="CostPrice" />
+      <PropertyRef Name="SellingPrice" />
+      <PropertyRef Name="Fee" />
+    </Key>
+    <Property Name="BookChiper" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Printing" Type="int" Nullable="false" />
+    <Property Name="PrintDate" Type="date" Nullable="false" />
+    <Property Name="CostPrice" Type="int" Nullable="false" />
+    <Property Name="SellingPrice" Type="int" Nullable="false" />
+    <Property Name="Fee" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contract">
+    <Key>
+      <PropertyRef Name="IdContract" />
+    </Key>
+    <Property Name="IdContract" Type="int" Nullable="false" />
+    <Property Name="DateOfContract" Type="date" Nullable="false" />
+    <Property Name="LengthOfContract" Type="int" Nullable="false" />
+    <Property Name="StateContract" Type="bit" Nullable="false" />
+    <Property Name="ContractTerminationDate" Type="date" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "D:\COLLEGE\C#\COURSEWORKFORDB\COURSEWORKFORDB\COURSEWORK.MDF.dbo.Customers" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CustomerName" />
+      <PropertyRef Name="Address" />
+      <PropertyRef Name="Tel" />
+      <PropertyRef Name="FirstLastName" />
+    </Key>
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Tel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstLastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "D:\COLLEGE\C#\COURSEWORKFORDB\COURSEWORKFORDB\COURSEWORK.MDF.dbo.Orders" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="IDOrder" />
+      <PropertyRef Name="OrderDate" />
+      <PropertyRef Name="OrderExecutionDate" />
+      <PropertyRef Name="BookCount" />
+    </Key>
+    <Property Name="IDOrder" Type="int" Nullable="false" />
+    <Property Name="OrderDate" Type="date" Nullable="false" />
+    <Property Name="OrderExecutionDate" Type="date" Nullable="false" />
+    <Property Name="BookCount" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "D:\COLLEGE\C#\COURSEWORKFORDB\COURSEWORKFORDB\COURSEWORK.MDF.dbo.Writer" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="Writer">
+    <Key>
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="LastName" />
+      <PropertyRef Name="Patronymic" />
+      <PropertyRef Name="Address" />
+      <PropertyRef Name="Telephone" />
+    </Key>
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Telephone" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="Хранилище CourseWorkModelContainer">
+    <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Books" EntityType="Self.Books" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Books].[BookChiper] AS [BookChiper], 
+    [Books].[Name] AS [Name], 
+    [Books].[Printing] AS [Printing], 
+    [Books].[PrintDate] AS [PrintDate], 
+    [Books].[CostPrice] AS [CostPrice], 
+    [Books].[SellingPrice] AS [SellingPrice], 
+    [Books].[Fee] AS [Fee]
+    FROM [dbo].[Books] AS [Books]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Customers" EntityType="Self.Customers" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Customers].[CustomerName] AS [CustomerName], 
+    [Customers].[Address] AS [Address], 
+    [Customers].[Tel] AS [Tel], 
+    [Customers].[FirstLastName] AS [FirstLastName]
+    FROM [dbo].[Customers] AS [Customers]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Orders" EntityType="Self.Orders" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Orders].[IDOrder] AS [IDOrder], 
+    [Orders].[OrderDate] AS [OrderDate], 
+    [Orders].[OrderExecutionDate] AS [OrderExecutionDate], 
+    [Orders].[BookCount] AS [BookCount]
+    FROM [dbo].[Orders] AS [Orders]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Writer" EntityType="Self.Writer" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Writer].[FirstName] AS [FirstName], 
+    [Writer].[LastName] AS [LastName], 
+    [Writer].[Patronymic] AS [Patronymic], 
+    [Writer].[Address] AS [Address], 
+    [Writer].[Telephone] AS [Telephone]
+    FROM [dbo].[Writer] AS [Writer]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

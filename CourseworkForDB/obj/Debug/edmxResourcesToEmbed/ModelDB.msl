@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище CourseWorkModelContainer" CdmEntityContainer="CourseWorkEntities">
+    <EntitySetMapping Name="Contract">
+      <EntityTypeMapping TypeName="CourseWorkModel.Contract">
+        <MappingFragment StoreEntitySet="Contract">
+          <ScalarProperty Name="IdContract" ColumnName="IdContract" />
+          <ScalarProperty Name="DateOfContract" ColumnName="DateOfContract" />
+          <ScalarProperty Name="LengthOfContract" ColumnName="LengthOfContract" />
+          <ScalarProperty Name="StateContract" ColumnName="StateContract" />
+          <ScalarProperty Name="ContractTerminationDate" ColumnName="ContractTerminationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="CourseWorkModel.Books">
+        <MappingFragment StoreEntitySet="Books">
+          <ScalarProperty Name="BookChiper" ColumnName="BookChiper" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Printing" ColumnName="Printing" />
+          <ScalarProperty Name="PrintDate" ColumnName="PrintDate" />
+          <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
+          <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+          <ScalarProperty Name="Fee" ColumnName="Fee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="CourseWorkModel.Customers">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="FirstLastName" ColumnName="FirstLastName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="CourseWorkModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="IDOrder" ColumnName="IDOrder" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="OrderExecutionDate" ColumnName="OrderExecutionDate" />
+          <ScalarProperty Name="BookCount" ColumnName="BookCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Writer">
+      <EntityTypeMapping TypeName="CourseWorkModel.Writer">
+        <MappingFragment StoreEntitySet="Writer">
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
