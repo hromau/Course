@@ -18,12 +18,19 @@ namespace CourseworkForDB
         public static SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\College\C#\CourseworkForDB\CourseworkForDB\CourseWork.mdf;Integrated Security=True;Connect Timeout=30");
         Thread AppExit = new Thread(CloseAndExit);
 
+        public DataGridViewComboBoxCell boxCell;
+
+        public Contract tempContract;
+        public Writer tempWriter;
+        public Books tempBooks;
+        public Orders tempOrders;
+        public Customers tempCustomers;
+
         public ViewTable()
         {
             InitializeComponent();
         }
         
-
         private void ViewTable_Load(object sender, EventArgs e)
         {
             dataGridView1.ReadOnly = true;
@@ -60,12 +67,8 @@ namespace CourseworkForDB
             this.Cursor = Cursors.Default;
         }
 
-        public Contract tempContract;
-        public Writer tempWriter;
-        public Books tempBooks;
-        public Orders tempOrders;
-        public Customers tempCustomers;
-
+      
+        
         private void ToolStripComboBox1_TextChanged(object sender, EventArgs e)
         {
             this.Enabled = false;
@@ -98,6 +101,7 @@ namespace CourseworkForDB
             //    connection.Close();
             //    return;
             //}
+            SetBoxCell(toolStripComboBox1.SelectedItem.ToString(), ref dataGridView1, ref boxCell);
             connection.Close();
             this.Enabled = true;
             this.Cursor = Cursors.Default;
@@ -116,33 +120,92 @@ namespace CourseworkForDB
 
         private void ВключеноToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Enabled = false;
+            Cursor = Cursors.WaitCursor;
+            boxCell.ReadOnly = false;
+            
             dataGridView1.ReadOnly = false;
             включеноToolStripMenuItem.Enabled = false;
             отключеноToolStripMenuItem.Enabled = true;
+
+            Enabled = true;
+            Cursor = Cursors.Default;
         }
 
         private void ОтключеноToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Enabled = false;
+            Cursor = Cursors.WaitCursor;
+            boxCell.ReadOnly = true;
+
             dataGridView1.ReadOnly = true;
             включеноToolStripMenuItem.Enabled = true;
             отключеноToolStripMenuItem.Enabled = false;
+
+            Enabled = true;
+            Cursor = Cursors.Default;
         }
 
-        public static void SetBoxCell(string table, ref DataGridView dataGrid, int indexLastCell, ref DataGridViewComboBoxCell boxCell)
+        public static void SetBoxCell(string table, ref DataGridView dataGrid, ref DataGridViewComboBoxCell boxCell)
         {
-            switch(table)
+            switch (table)
             {
-                // to do 
+                case "Contract":
+                    {
+                        dataGrid.ColumnCount += 1;
+                        dataGrid.Columns[dataGrid.ColumnCount - 1].HeaderText = "IdContract";
+                        boxCell = new DataGridViewComboBoxCell { AutoComplete = true };
+                        GetNoteForeignTable("Contract",ref boxCell);
+                        break;
+                    }
+                case "Writer":
+                    {
+                        dataGrid.ColumnCount += 1;
+                        dataGrid.Columns[dataGrid.ColumnCount - 1].HeaderText = "IdWriter";
+                        boxCell = new DataGridViewComboBoxCell { AutoComplete = true };
+                        GetNoteForeignTable("Writer", ref boxCell);
+                        break;
+                    }
+                case "Books":
+                    {
+                        break;
+                    }
+                case "Orders":
+                    {
+                        break;
+                    }
+                case "Customers":
+                    {
+                        break;
+                    }
             }
         }
 
         //constructor
-        public static void GetNoteForeignTable()
+        public static void GetNoteForeignTable(string tableName, ref DataGridViewComboBoxCell boxCell)
         {
-            // to do
+            switch (tableName)
+            {
+                case "Contract":
+                    {
+                        foreach (var t in model.Writer)
+                            boxCell.Items.AddRange(t.Id);
+
+                        break;
+                    }
+                case "Writer":
+                    {
+                        foreach (var t in model.Contract)
+                            boxCell.Items.AddRange(t.Id);
+
+                        break;
+                    }
+                    //case ""
+            }
+
         }
 
-        private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
+        private void DataGridView1_KeyUp(object sender, KeyEventArgs e)
         {
             if (dataGridView1.ReadOnly == false)
             {
